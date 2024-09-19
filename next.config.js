@@ -1,10 +1,10 @@
-const withNextra = require("nextra")({
-    theme: "nextra-theme-docs",
-    themeConfig: "./theme.config.tsx",
+const withNextra = require('nextra')({
+    theme: 'nextra-theme-docs',
+    themeConfig: './theme.config.tsx',
 });
 
-const isProduction = process.env.NODE_ENV === "production";
-const assetPrefix = isProduction ? "/AISummarizer-docs" : "";
+const isProduction = process.env.NODE_ENV === 'production';
+const assetPrefix = isProduction ? '/AISummarizer-docs' : '';
 
 const nextConfig = {
     images: {
