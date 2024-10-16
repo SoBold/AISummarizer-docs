@@ -1,0 +1,84 @@
+import { Callout } from 'nextra/components';
+
+# AI Summarizer Plugin File
+
+## Overview
+
+The **AI Summarizer Plugin** is a WordPress plugin designed to integrate with AWS Bedrock and OpenAI to generate AI-powered summaries of post content. It ensures compatibility with PHP version 8.1 and above, providing a user-friendly interface for users to leverage AI technology in their WordPress site.
+
+## Plugin Metadata
+
+```php
+/**
+ * Plugin Name: AI Summarizer Plugin
+ * Plugin URI: https://sobold.co.uk/
+ * Description: A WordPress plugin that integrates with AWS Bedrock and OpenAI
+ *              to generate AI-powered summaries of post content.
+ * Version: 1.0.0
+ * Author: Santosh <santosh@soboldltd.com>
+ * Author URI: https://sobold.co.uk/santosh
+ * License: GPL-2.0-or-later
+ * Requires PHP: 8.1
+ * Text Domain: ai-summarizer
+ * Domain Path: /languages
+ */
+```
+
+### Key Fields
+
+-   **Plugin Name**: The name of the plugin as it appears in the WordPress dashboard.
+-   **Plugin URI**: URL to the plugin's homepage.
+-   **Description**: A brief overview of the plugin's functionality.
+-   **Version**: The current version of the plugin.
+-   **Author**: The author's name and contact information.
+-   **Author URI**: A link to the author's website.
+-   **License**: The license under which the plugin is distributed (GPL-2.0-or-later).
+-   **Requires PHP**: The minimum PHP version required for the plugin to function (8.1).
+-   **Text Domain**: The text domain used for localization.
+-   **Domain Path**: The path to the language files.
+
+### Plugin Structure
+
+#### Initialization
+
+The plugin checks for the required PHP version upon activation and ensures that it meets the compatibility criteria.
+
+### Methods
+
+#### `aiSummarizerCheckPhpVersion()`
+
+**Description**
+Checks if the current PHP version is compatible with the plugin.
+
+<Callout type="info">
+    - Compares the current PHP version to the minimum required version (8.1). -
+    Displays an admin notice if the PHP version is below the required threshold.
+    - Deactivates the plugin if the version is incompatible.
+</Callout>
+**Returns:** `void`
+
+#### `aiSummarizerPhpVersionNotice()`
+
+**Description**
+Displays an admin notice if the PHP version is incompatible.
+
+<Callout type="info">
+    - Outputs an error message indicating that the plugin requires PHP 8.1 or
+    higher.
+</Callout>
+**Returns:** `void`
+
+### Activation and Deactivation Hooks
+
+The plugin registers activation and deactivation hooks to manage its lifecycle:
+
+```php
+register_activation_hook(
+    __FILE__,
+    'aiSummarizerCheckPhpVersion'
+);
+```
+
+<Callout type="alert">
+    Checks PHP version compatibility when the plugin is activated.
+</Callout>
