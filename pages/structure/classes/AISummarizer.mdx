@@ -71,3 +71,22 @@ Initializes the AI model based on the plugin settings. It retrieves the AWS acce
         `Note:` This method checks for the presence of required options and
         returns early if any are missing
     </Callout>
+
+**`enqueueAssets()`**
+
+```php
+public static function enqueueAssets(): void
+```
+
+**Returns:** `void`
+
+**Parameters:** None
+
+**Description:**
+Enqueues the necessary JavaScript and CSS assets for the plugin.
+
+_It includes:_
+
+-   A script (`ai-summarizer.js`) for handling frontend interactions.
+-   Localizes script data to pass REST API URLs and a nonce for security.
+-   A stylesheet (`ai-summarizer.css`) for plugin styling.
