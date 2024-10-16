@@ -17,18 +17,22 @@ use AISummarizer\Factories\ModelFactory;
 use WP_Error;
 ```
 
-##Class: AISummarizerAdmin
+### Class: AISummarizerAdmin
 
 **Description:**
 This class provides all the required admin functionalities for managing the plugin's settings and configurations. It hooks into various WordPress admin actions like admin_menu, admin_init, and manages settings for AWS configurations, post types, and widgets.
 
-##Methods
+#### Methods
 
 **1. init()**
 
 ```php
 public static function init()
 ```
+
+**Returns:** `void`
+
+**Parameters:** None
 
 **Description:**
 Initializes the admin settings by hooking into WordPress actions. This method sets up the admin menu, registers settings, saves settings, and adds the meta box for summarization.
@@ -46,6 +50,10 @@ _WordPress Hooks_
 public static function addAdminMenu()
 ```
 
+**Returns:** `void`
+
+**Parameters:** None
+
 **Description:**
 Adds submenu pages under the main "AI Summarizer" admin menu.
 
@@ -56,14 +64,20 @@ _These pages allow users to configure settings for:_
 -   Widget settings.
 -   **Submenu Pages:**
     -   **`AI Summarizer`**: Main settings page.
-    -   **`Post Types Settings`**: Manage the post types for summarization.
-    -   **`Widget Settings`**: Configure the widget options.
+    -   **`Post Types `**: Manage the post types for summarization.
+    -   **`Widget`**: Configure the widget options.
 
 **3. masterRender($component)**
 
 ```php
 public static function masterRender($component)
 ```
+
+**Returns:** `void`
+
+**Parameters:**
+
+-   `$component (string)`: The name of the component or template to be rendered. The method will attempt to load the corresponding PHP file from the plugin's admin view folder.
 
 **Description:**
 Includes and renders PHP component files. It takes a $component argument which is the name of the component file to include.
@@ -76,6 +90,10 @@ Used for rendering different setting forms across the plugin's settings pages.
 ```php
 public static function registerSettings()
 ```
+
+**Returns:** `void`
+
+**Parameters:** None
 
 **Description:**
 Registers plugin settings for AWS configuration, model types, and other general plugin options. This method adds sections and fields to the settings pages.
@@ -157,6 +175,10 @@ Renders the widget settings page where users can configure the front-end display
 public static function addSummarizerMetaBox($post_type)
 ```
 
+**Returns:** `void`
+
+**Parameters:**
+
 **Description:**
 Adds a meta box to the post editor screen for summarization. This box only appears for the post types that are selected for summarization in the plugin settings.
 
@@ -169,6 +191,8 @@ _Meta Box Added For:_
 ```php
 public static function saveSettings()
 ```
+
+**Returns:** `void`
 
 **Description:**
 Handles saving the plugin settings when the settings form is submitted. It includes nonce verification for security, and encrypts the AWS keys before saving them to the database.
@@ -194,6 +218,12 @@ Displays an admin notice when there is an error or message that needs to be show
 private static function encrypt(string $data): string
 ```
 
+**Returns:** `string` (Encrypted base64 string)
+
+**Parameters:**
+
+-   `$data (string)`: The string data to be encrypted.
+
 **Description:**
 Encrypts the given data using AES-256-CBC encryption and returns the encrypted string in base64 format.
 
@@ -206,6 +236,12 @@ Encrypts the given data using AES-256-CBC encryption and returns the encrypted s
 public static function decrypt(string $encryptedData): string
 ```
 
+**Returns:** `string` (Decrypted original string)
+
+**Parameters:**
+
+-   `$encryptedData (string)`: The base64-encoded string to be decrypted.
+
 **Description:**
 Decrypts the base64-encoded encrypted data using AES-256-CBC. This is used to retrieve sensitive data from the database.
 
@@ -214,6 +250,12 @@ Decrypts the base64-encoded encrypted data using AES-256-CBC. This is used to re
 ```php
 public static function canPostTypeBeSummarized($post_type)
 ```
+
+**Returns:** `bool` (True if post type can be summarized, false otherwise)
+
+**Parameters:**
+
+-   `$post_type (string)`: The post type to be checked.
 
 **Description:**
 Determines if a given post type can be summarized based on whether it supports the editor or ACF fields like text contents.
@@ -234,14 +276,14 @@ Checks if the ACF fields associated with a post type contain relevant text-based
 -   **`add_meta_boxes`**: Adds a meta box for post summarization.
 -   **`admin_notices`**: Displays any admin notices (e.g., errors, confirmations).
 
-##Security Considerations
+## Security Considerations
 
 -   Nonce Verification:
     Nonces are used to secure form submissions when saving settings.
 -   Data Encryption:
     Sensitive information like AWS credentials is encrypted using AES-256-CBC before being saved in the WordPress database.
 
-##Example Usage
+## Example Usage
 
 -   Register the Admin Actions:
 
@@ -253,3 +295,5 @@ Checks if the ACF fields associated with a post type contain relevant text-based
 -   Access the Settings Pages:
     -   Navigate to the WordPress dashboard, and under Settings, you will see the **AI Summarizer** menu.
     -   Configure your AWS settings, post types, and widget options from there.
+
+**Version:** 1.0.0
