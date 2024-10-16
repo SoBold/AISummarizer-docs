@@ -1,0 +1,35 @@
+# Models (Bedrock)
+
+The `BedrockModel` class is responsible for summarizing text using the AWS Bedrock API. It interacts with the BedrockRuntimeClient to generate summaries based on the input text provided.
+
+## Namespace
+
+```php
+namespace AISummarizer\Models;
+```
+
+### Dependencies
+
+This class uses the following dependencies:
+
+-   `Aws\BedrockRuntime\BedrockRuntimeClient`: For interacting with the AWS Bedrock service.
+-   `Aws\Exception\AwsException`: For handling exceptions from AWS SDK.
+-   `WP_Error`: For returning error messages in a WordPress context.
+
+### Constructor
+
+#### `__construct(array $config)`
+
+Initializes a new instance of the BedrockModel class.
+
+**Returns:** `void`
+
+**Parameters:**
+
+-   `array $config`: Configuration parameters required to initialize the BedrockRuntimeClient.
+    -   `model_id`: (string) The ID of the Bedrock model to be used for summarization.
+    -   `aws_access_key`: (string) The AWS access key for authentication.
+    -   `aws_secret_key`: (string) The AWS secret key for authentication.
+    -   `aws_region`: (string) The AWS region where the Bedrock service is hosted (default is us-east-1).
+
+### Methods
