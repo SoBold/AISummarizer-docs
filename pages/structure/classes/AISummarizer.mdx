@@ -1,0 +1,73 @@
+import { Callout } from 'nextra/components';
+
+# AISummarizer Class Documentation
+
+### File: `AISummarizer.php`
+
+## Overview
+
+The `AISummarizer` class is a central component of the **AI Summarizer Plugin**. This class integrates AI models to summarize WordPress posts and handles various functionalities such as REST API routes, asset management, and post rendering. It is designed to work seamlessly within the WordPress environment, leveraging its hooks and filters.
+
+---
+
+## Class Definition
+
+```php
+namespace AISummarizer;
+
+use AISummarizer\Factories\ModelFactory;
+use AISummarizer\AISummarizerAdmin;
+use WP_Error;
+use WP_REST_Request;
+use WP_REST_Response;
+```
+
+## Class: AISummarizer
+
+**Description:**
+The `AISummarizer` class manages the integration of AI models for summarizing posts in WordPress. It initializes the plugin, handles the rendering of widget boxes, enqueues scripts and styles, and provides REST API endpoints for summarization.
+
+#### Properties
+
+**1. `private static $model`**
+
+-   **Description**: Holds the instance of the AI model used for summarization.
+-   **Type**: object|null
+
+#### Methods
+
+**init()**
+
+```php
+public static function init(): void
+```
+
+**Returns:** `void`
+
+**Parameters:** None
+
+**Description:**
+Initializes the plugin by setting up actions and filters necessary for its functionality. This method handles:
+
+-   Enqueuing scripts and styles for the frontend and admin.
+-   Rendering the widget box on relevant post types.
+-   Registering REST API routes.
+-   Initializing admin settings and the selected AI model.
+
+**initializeModel()**
+
+```php
+private static function initializeModel(): void
+```
+
+**Returns:** `void`
+
+**Parameters:** None
+
+**Description:**
+Initializes the AI model based on the plugin settings. It retrieves the AWS access key, secret key, region, and model ID, decrypts them, and uses them to create a model instance through the `ModelFactory`.
+
+    <Callout type="info">
+        `Note:` This method checks for the presence of required options and
+        returns early if any are missing
+    </Callout>
