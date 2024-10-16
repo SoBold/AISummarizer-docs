@@ -16,5 +16,41 @@ This interface is part of the AI_Summarizer plugin and provides a standardized m
 
 ### `summarize(string $content)`: string
 
-
+**Description**
 Summarizes the given content.
+
+**Returns:**
+
+-   `string`: Returns the summarized content as a string. The summarized content is expected to be a shorter version of the input, capturing the main ideas or points.
+
+**Parameters:**
+
+-   `string $content`: The content to be summarized. This should be a string containing the full text or information that needs to be condensed into a summary.
+
+### Example Usage
+
+```php
+namespace AISummarizer\Models;
+
+use AISummarizer\Interfaces\AiModelInterface;
+
+class SomeAiModel implements AiModelInterface
+{
+    /**
+     * Summarizes the given content.
+     *
+     * @param string $content The content to summarize.
+     *
+     * @return string The summarized content.
+     */
+    public function summarize(string $content): string
+    {
+        // Implement your summarization logic here
+        return "This is a summary of the content."; // Placeholder implementation
+    }
+}
+```
+
+### Summary
+
+The AiModelInterface serves as a blueprint for any AI model that is used for summarization within the AI_Summarizer plugin. By adhering to this interface, developers can ensure compatibility and consistent functionality across different AI summarization implementations.
