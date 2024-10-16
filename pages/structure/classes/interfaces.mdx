@@ -8,13 +8,13 @@ The `AiModelInterface` interface defines the contract for AI models used in text
 namespace AISummarizer\Interfaces;
 ```
 
-## Description
+### Description
 
 This interface is part of the AI_Summarizer plugin and provides a standardized method for summarizing content across different AI models. Implementing this interface ensures that all AI models have a consistent method for generating summaries.
 
-## Methods
+### Methods
 
-### `summarize(string $content)`: string
+#### `summarize(string $content)`: string
 
 **Description**
 Summarizes the given content.
@@ -27,7 +27,7 @@ Summarizes the given content.
 
 -   `string $content`: The content to be summarized. This should be a string containing the full text or information that needs to be condensed into a summary.
 
-### Example Usage
+## Example Usage
 
 ```php
 namespace AISummarizer\Models;
@@ -51,6 +51,6 @@ class SomeAiModel implements AiModelInterface
 }
 ```
 
-### Summary
+## Summary
 
 The AiModelInterface serves as a blueprint for any AI model that is used for summarization within the AI_Summarizer plugin. By adhering to this interface, developers can ensure compatibility and consistent functionality across different AI summarization implementations.
