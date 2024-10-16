@@ -1,138 +1,32 @@
-# AISummarizerAdmin Model
+# AISummarizerAdmin Class Documentation
 
-The `AISummarizerAdmin` class handles admin settings and configuration for the AI Summarizer plugin.
+### File: `AISummarizerAdmin.php`
 
-## Properties
+## Overview
 
-| Property Name    | Type     | Description                                                            | Version |
-| ---------------- | -------- | ---------------------------------------------------------------------- | ------- |
-| `admin_menu`     | callable | Adds submenu pages for plugin settings, post types, and widget options | 1.0.0   |
-| `settings`       | callable | Registers plugin settings for AWS configuration                        | 1.0.0   |
-| `meta_box`       | callable | Adds a meta box to the post edit screen for summarizer functionality   | 1.0.0   |
-| `encryption_key` | string   | The key used for encrypting data                                       | 1.0.0   |
-
-## Methods
-
-### `init`
-
-**Description:** Initializes admin settings and menu pages by hooking into WordPress actions.
-
-**Returns:** `void`
-
-**Parameters:** None
-
-**Version:** 1.0.0
+The `AISummarizerAdmin` class is a core component of the **AI Summarizer Plugin**. It handles the admin settings, configuration, menu pages, and other functionalities for managing the plugin within the WordPress admin dashboard.
 
 ---
 
-### `addAdminMenu`
+## Class Definition
 
-**Description:** Adds submenu pages for the AI Summarizer, Post Types, and Widget Settings in the WordPress dashboard.
+```php
+namespace AISummarizer;
 
-**Returns:** `void`
+use AISummarizer\Factories\ModelFactory;
+use WP_Error;
+```
 
-**Parameters:** None
+##Class: AISummarizerAdmin
 
-**Version:** 1.0.0
+**Description:**
 
----
+This class provides all the required admin functionalities for managing the plugin's settings and configurations. It hooks into various WordPress admin actions like admin_menu, admin_init, and manages settings for AWS configurations, post types, and widgets.
 
-### `masterRender`
+##Methods
 
-**Description:** Handles the rendering of PHP files for admin components. This method is used to render the HTML of admin pages and components by dynamically including the appropriate template files.
+**1. init()**
 
-**Returns:** `void`
-
-**Parameters:**
-
--   `$component (string)`: The name of the component or template to be rendered. The method will attempt to load the corresponding PHP file from the plugin's admin view folder.
-
-**Version:** 1.0.0
-
----
-
-### `registerSettings`
-
-**Description:** Registers plugin settings for AWS configurations, adding fields for model types, access keys, regions, etc.
-
-**Returns:** `void`
-
-**Parameters:** None
-
-**Version:** 1.0.0
-
----
-
-### `addSummarizerMetaBox`
-
-**Description:** Adds a meta box to the post edit screen, where content can be summarized using the AI Summarizer model.
-
-**Returns:** `void`
-
-**Parameters:**
-
--   `$post_type`: The post type to which the summarizer meta box is added.
-
-**Version:** 1.0.0
-
----
-
-### `saveSettings`
-
-**Description:** Saves the admin settings after validating and sanitizing the input, and processes the AWS settings.
-
-**Returns:** `void`
-
-**Version:** 1.0.0
-
----
-
-### `encrypt`
-
-**Description:** Encrypts the given data using AES-256-CBC encryption and returns a base64-encoded string.
-
-**Returns:** `string` (Encrypted base64 string)
-
-**Parameters:**
-
--   `$data (string)`: The string data to be encrypted.
-
-**Version:** 1.0.0
-
----
-
-### `decrypt`
-
-**Description:** Decrypts the given data using AES-256-CBC and returns the original string.
-
-**Returns:** `string` (Decrypted original string)
-
-**Parameters:**
-
--   `$encryptedData (string)`: The base64-encoded string to be decrypted.
-
-**Version:** 1.0.0
-
----
-
-### `canPostTypeBeSummarized`
-
-**Description:** Determines if a post type can be summarized based on the editor or ACF fields.
-
-**Returns:** `bool` (True if post type can be summarized, false otherwise)
-
-**Parameters:**
-
--   `$post_type (string)`: The post type to be checked.
-
-**Version:** 1.0.0
-
----
-
-### `displayAdminNotice`
-
-**Description:** Displays admin notices for any errors encountered during the summarization process or settings saving.
-
-**Returns:** `void`
-
-**Version:** 1.0.0
+```php
+public static function init()
+```
