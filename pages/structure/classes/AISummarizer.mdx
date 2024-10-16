@@ -27,16 +27,16 @@ use WP_REST_Response;
 **Description:**
 The `AISummarizer` class manages the integration of AI models for summarizing posts in WordPress. It initializes the plugin, handles the rendering of widget boxes, enqueues scripts and styles, and provides REST API endpoints for summarization.
 
-#### Properties
+### Properties
 
 **1. `private static $model`**
 
 -   **Description**: Holds the instance of the AI model used for summarization.
 -   **Type**: object|null
 
-#### Methods
+### Methods
 
-**init()**
+#### `init()`
 
 ```php
 public static function init(): void
@@ -54,7 +54,7 @@ Initializes the plugin by setting up actions and filters necessary for its funct
 -   Registering REST API routes.
 -   Initializing admin settings and the selected AI model.
 
-**initializeModel()**
+#### `initializeModel()`
 
 ```php
 private static function initializeModel(): void
@@ -72,7 +72,7 @@ Initializes the AI model based on the plugin settings. It retrieves the AWS acce
         returns early if any are missing
     </Callout>
 
-**`enqueueAssets()`**
+#### `enqueueAssets()`
 
 ```php
 public static function enqueueAssets(): void
@@ -90,3 +90,21 @@ _It includes:_
 -   A script (`ai-summarizer.js`) for handling frontend interactions.
 -   Localizes script data to pass REST API URLs and a nonce for security.
 -   A stylesheet (`ai-summarizer.css`) for plugin styling.
+
+#### `registerRestRoutes()`
+
+```php
+public static function registerRestRoutes(): void
+```
+
+**Returns:** `void`
+
+**Parameters:** None
+
+**Description:**
+Registers REST API routes for the summarization functionalities.
+
+_It includes:_
+
+-   A **POST** route (/summarize) for creating a summary of a post (user permission required).
+-   A **GET** route (/getSummary) for fetching the existing summary of a post (public access).
