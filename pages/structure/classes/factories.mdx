@@ -1,0 +1,56 @@
+# Factories (ModelFactory)
+
+The `ModelFactory` class provides a method for creating instances of AI models based on the selected model type. It is part of the **AI_Summarizer** plugin and helps streamline the process of model instantiation.
+
+## Namespace
+
+```php
+namespace AISummarizer\Factories;
+```
+
+### Description
+
+The ModelFactory is responsible for creating AI model instances. Currently, it supports the creation of the BedrockModel instance, but it can be extended to support additional model types as needed. This factory design pattern allows for better separation of concerns and enhances code maintainability.
+
+### Methods
+
+#### `create(array $config)`:
+
+```php
+public static function create($config)
+```
+
+**Description**
+Creates and returns an instance of the BedrockModel class.
+
+**Returns:**
+
+-   `BedrockModel`: Returns an instance of the `BedrockModel` class, initialized with the provided configuration.
+
+**Parameters:**
+
+-   `array $config`: An associative array containing configuration parameters required to instantiate the model. This typically includes: - model_id: The identifier of the AI model.
+    -   `aws_region`: The AWS region where the model is hosted.
+    -   `aws_access_key`: AWS access key for authentication.
+    -   `aws_secret_key`: AWS secret key for authentication
+
+### Example Usage
+
+```php
+use AISummarizer\Factories\ModelFactory;
+
+// Configuration parameters
+$config = [
+    'model_id'      => 'your_model_id',
+    'aws_region'    => 'us-east-1',
+    'aws_access_key' => 'your_access_key',
+    'aws_secret_key' => 'your_secret_key'
+];
+
+// Create an instance of BedrockModel
+$bedrockModel = ModelFactory::create($config);
+```
+
+### Summary
+
+The `ModelFactory` class simplifies the creation of AI model instances within the AI_Summarizer plugin. By using this factory, developers can easily manage model instantiation, making the code more modular and maintainable.
