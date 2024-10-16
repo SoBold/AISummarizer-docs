@@ -1,0 +1,7 @@
+{
+    "models": "Models",
+    "interfaces": "Interfaces",
+    "factories": "Factories",
+    "AISummarizer": "AI Summarizer",
+    "AISummarizerAdmin": "AI Summarizer Admin"
+}

@@ -1,3 +1,4 @@
 {
-    "DECKARD-DOC/pages/structure/root.mdx": "Root"
+    "root": "Root",
+    "classes": "Classes"
 }

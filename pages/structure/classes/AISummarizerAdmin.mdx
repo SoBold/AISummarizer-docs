@@ -1,0 +1,106 @@
+# AISummarizerAdmin Model
+
+The `AISummarizerAdmin` class handles admin settings and configuration for the AI Summarizer plugin.
+
+## Properties
+
+| Property Name  | Type     | Description                                                            | Version |
+| -------------- | -------- | ---------------------------------------------------------------------- | ------- |
+| admin_menu     | callable | Adds submenu pages for plugin settings, post types, and widget options | 1.0.0   |
+| settings       | callable | Registers plugin settings for AWS and OpenAI configuration             | 1.0.0   |
+| meta_box       | callable | Adds a meta box to the post edit screen for summarizer functionality   | 1.0.0   |
+| encryption_key | string   | The key used for encrypting data                                       | 1.0.0   |
+
+## Methods
+
+### `init`
+
+**Description:** Initializes admin settings and menu pages by hooking into WordPress actions.
+
+**Parameters:** None
+
+**Version:** 1.0.0
+
+---
+
+### `addAdminMenu`
+
+**Description:** Adds submenu pages for the AI Summarizer, Post Types, and Widget Settings in the WordPress dashboard.
+
+**Parameters:** None
+
+**Version:** 1.0.0
+
+---
+
+### `registerSettings`
+
+**Description:** Registers plugin settings for AWS and OpenAI configurations, adding fields for model types, access keys, regions, etc.
+
+**Parameters:** None
+
+**Version:** 1.0.0
+
+---
+
+### `addSummarizerMetaBox`
+
+**Parameters:**
+
+-   `$post_type`: The post type to which the summarizer meta box is added.
+
+**Description:** Adds a meta box to the post edit screen, where content can be summarized using the AI Summarizer model.
+
+**Version:** 1.0.0
+
+---
+
+### `saveSettings`
+
+**Description:** Saves the admin settings after validating and sanitizing the input, and processes the AWS and OpenAI settings.
+
+**Version:** 1.0.0
+
+---
+
+### `encrypt`
+
+**Parameters:**
+
+-   `$data`: The string data to be encrypted.
+
+**Description:** Encrypts the given data using AES-256-CBC encryption and returns a base64-encoded string.
+
+**Version:** 1.0.0
+
+---
+
+### `decrypt`
+
+**Parameters:**
+
+-   `$encryptedData`: The base64-encoded string to be decrypted.
+
+**Description:** Decrypts the given data using AES-256-CBC and returns the original string.
+
+**Version:** 1.0.0
+
+---
+
+### `canPostTypeBeSummarized`
+
+**Parameters:**
+
+-   `$post_type`: The post type to be checked.
+
+**Description:** Determines if a post type can be summarized based on the editor or ACF fields.
+
+**Version:** 1.0.0
+
+---
+
+### `displayAdminNotice`
+
+**Description:** Displays admin notices for any errors encountered during the summarization process or settings saving.
+
+**Version:** 1.0.0
