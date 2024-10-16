@@ -29,7 +29,7 @@ The `AISummarizer` class manages the integration of AI models for summarizing po
 
 ### Properties
 
-**1. `private static $model`**
+#### **`private static $model`**
 
 -   **Description**: Holds the instance of the AI model used for summarization.
 -   **Type**: object|null
@@ -108,3 +108,190 @@ _It includes:_
 
 -   A **POST** route (/summarize) for creating a summary of a post (user permission required).
 -   A **GET** route (/getSummary) for fetching the existing summary of a post (public access).
+
+#### `getMissingModelFields()`
+
+```php
+private static function getMissingModelFields(): array
+```
+
+**Returns:** `array`
+
+**Parameters:** None
+
+**Description:**
+Helper function that checks for missing model credentials (AWS access key, secret key, region, model ID) and returns an array of corresponding messages for any missing fields.
+
+#### `handleSummarization(WP_REST_Request $request)`
+
+```php
+public static function handleSummarization(WP_REST_Request $request)
+```
+
+**Returns:** `WP_REST_Response` with the summary or a `WP_Error` in case of failures.
+
+**Parameters:** `WP_REST_Request $request` The REST request object.
+
+**Description:**
+Handles the summarization of post content via the REST API.
+
+_It performs the following tasks:_
+
+-   Verifies the nonce for security.
+-   Validates the post_id parameter.
+-   Retrieves the post and checks for missing model credentials.
+-   Summarizes the post content using the initialized AI model and updates the post meta with the summary.
+
+#### `handleGetSummarization(WP_REST_Request $request)`
+
+```php
+public static function handleGetSummarization(WP_REST_Request $request)
+```
+
+**Returns:** `WP_Error|WP_REST_Response` The REST response or error object.
+
+**Parameters:** `WP_REST_Request $request` The REST request object.
+
+**Description:**
+Handles fetching the summarization of post content via the REST API.
+
+_It performs the following tasks:_
+
+-   Verifies the nonce for security.
+-   Validates the post_id parameter.
+-   Checks if the summary exists in post meta and returns it or a WP_Error if not found.
+
+#### `getFullPostContent(int $postId)`
+
+```php
+private static function getFullPostContent($postId)
+```
+
+**Returns:** `string` (Post content)
+
+**Parameters:**
+
+-   `$postId (int)`: Post Id
+
+**Description:**
+Retrieves the full content of a post,
+
+_including:_
+
+-   Default post content.
+-   ACF (Advanced Custom Fields) fields, if available.
+-   Gutenberg block content.
+-   WPBakery shortcode content.
+-   Other meta fields.
+
+#### `extractContentFromBlocks(array $blocks)`
+
+```php
+private static function extractContentFromBlocks($blocks)
+```
+
+**Returns:** `string` (Post content)
+
+**Parameters:**
+
+-   `$blocks (array)`: Block list array
+
+**Description:**
+Extracts content from Gutenberg blocks recursively. It constructs a string of inner HTML from the provided blocks and their inner blocks
+
+#### `extractWpBakeryContent(array $content)`
+
+```php
+private static function extractWpBakeryContent($content)
+```
+
+**Returns:** `string` (Post content)
+
+**Parameters:**
+
+-   `$content (string)`
+
+**Description:**
+Processes WPBakery shortcodes to extract their inner content, returning the processed content as a string.
+
+#### `getAcfData(int $postId)`
+
+```php
+public static function getAcfData(int $postId)
+```
+
+**Returns:** `array|false` (An associative array containing ACF field data, or false if no fields are found.)
+
+**Parameters:**
+
+-   `$postId (int)`
+
+**Description:**
+Retrieves ACF field data for a given post ID. It returns an associative array of ACF fields or false if no fields are found.
+
+#### `getAcfFieldData(int $postId)`
+
+```php
+public static function getAcfFieldData($fieldValue)
+```
+
+**Returns:** `mixed` (The processed field value.)
+
+**Parameters:**
+
+-   `$fieldValue (mixed)`
+
+**Description:**
+Processes ACF field data, handling nested arrays or objects recursively, and returns the processed field value.
+
+#### `renderWidgetBox()`
+
+```php
+public static function renderWidgetBox(): void
+```
+
+**Returns:** `void`
+
+**Parameters:** None
+
+**Description:**
+Renders a widget box on specified post types.
+
+_The rendering is conditional based on:_
+
+-   The current page being a singular post.
+-   The widget visibility option being enabled.
+-   The post type matching the specified post types.
+
+#### `pluginActivation()`
+
+```php
+public static function pluginActivation(): void
+```
+
+**Returns:** `void`
+
+**Parameters:** None
+
+**Description:**
+Performs activation tasks for the plugin, such as generating and storing a secure encryption key if it does not already exist.
+
+#### `pluginDeactivation()`
+
+```php
+public static function pluginDeactivation(): void
+```
+
+**Returns:** `void`
+
+**Parameters:** None
+
+**Description:**
+Handles deactivation tasks for the plugin,
+
+_including:_
+
+-   Deleting specific options from the database.
+-   Removing the `ai_summary` meta key from all posts that have it.
+
+**Version:** 1.0.0
