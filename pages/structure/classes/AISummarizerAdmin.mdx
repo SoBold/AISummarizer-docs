@@ -20,7 +20,6 @@ use WP_Error;
 ##Class: AISummarizerAdmin
 
 **Description:**
-
 This class provides all the required admin functionalities for managing the plugin's settings and configurations. It hooks into various WordPress admin actions like admin_menu, admin_init, and manages settings for AWS configurations, post types, and widgets.
 
 ##Methods
@@ -30,3 +29,13 @@ This class provides all the required admin functionalities for managing the plug
 ```php
 public static function init()
 ```
+
+**Description:**
+Initializes the admin settings by hooking into WordPress actions. This method sets up the admin menu, registers settings, saves settings, and adds the meta box for summarization.
+
+_WordPress Hooks_
+
+-   **`admin_menu`**: Adds the admin menu pages.
+-   **`admin_init`**: Registers settings and saves settings.
+-   **`add_meta_boxes`**: Adds a meta box for post summarization.
+-   **`admin_notices`**: Displays any admin notices (e.g., errors, confirmations).
