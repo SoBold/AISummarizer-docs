@@ -33,3 +33,56 @@ Initializes a new instance of the BedrockModel class.
     -   `aws_region`: (string) The AWS region where the Bedrock service is hosted (default is us-east-1).
 
 ### Methods
+
+#### summarize(string $text):
+
+```php
+public function summarize(string $text): array
+```
+
+**Description**
+Summarizes the given text using the Bedrock API.
+
+**Returns:**
+
+-   `array`: Returns an associative array with the following keys:
+    _`summary`_: (string) The summarized text. If summarization fails, this will contain an error message.
+    _`success`_: (bool) Indicates whether the summarization was successful. true if the summary exists, false otherwise.
+
+**Parameters:**
+
+-   `string $text`: The text to be summarized. This should be a well-formed string containing the content you want to summarize.
+    Error Handling
+
+<Callout type="info">
+**In the summarize method:**
+
+-   If an `AwsException` occurs, it logs the error details and returns a formatted error message.
+-   If any other general exceptions occur, it logs the error and returns a generic error message.
+
+</Callout>
+
+### Example Usage
+
+```php
+$config = [
+    'model_id' => 'your-model-id',
+    'aws_access_key' => 'your-aws-access-key',
+    'aws_secret_key' => 'your-aws-secret-key',
+    'aws_region' => 'us-east-1',
+];
+
+$bedrockModel = new BedrockModel($config);
+$textToSummarize = 'Your lengthy text here...';
+$result = $bedrockModel->summarize($textToSummarize);
+
+if ($result['success']) {
+    echo 'Summary: ' . $result['summary'];
+} else {
+    echo 'Error: ' . $result['summary'];
+}
+```
+
+### Summary
+
+The BedrockModel class provides a simple interface for summarizing text using AWS Bedrock services. It encapsulates the configuration and API interaction details, making it easier for developers to implement AI-driven summarization in the applications.
