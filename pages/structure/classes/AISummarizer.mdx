@@ -162,10 +162,10 @@ _It performs the following tasks:_
 -   Validates the post_id parameter.
 -   Checks if the summary exists in post meta and returns it or a WP_Error if not found.
 
-#### `handleGetSummarization(WP_REST_Request $request)`
+#### `handleApprovalSummarization(WP_REST_Request $request)`
 
 ```php
-public static function handleGetSummarization(WP_REST_Request $request)
+public static function handleApprovalSummarization(WP_REST_Request $request)
 ```
 
 **Returns:** `WP_REST_Response` with the summary or a `WP_Error` in case of failures.
