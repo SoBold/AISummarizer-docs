@@ -108,6 +108,7 @@ _It includes:_
 
 -   A **POST** route (/summarize) for creating a summary of a post (user permission required).
 -   A **GET** route (/getSummary) for fetching the existing summary of a post (public access).
+-   A **POST** route (/approval) for changing status (Approval/Disapproval) of summary of a post (user permission required).
 
 #### `getMissingModelFields()`
 
@@ -160,6 +161,25 @@ _It performs the following tasks:_
 -   Verifies the nonce for security.
 -   Validates the post_id parameter.
 -   Checks if the summary exists in post meta and returns it or a WP_Error if not found.
+
+#### `handleGetSummarization(WP_REST_Request $request)`
+
+```php
+public static function handleGetSummarization(WP_REST_Request $request)
+```
+
+**Returns:** `WP_REST_Response` with the summary or a `WP_Error` in case of failures.
+
+**Parameters:** `WP_REST_Request $request` The REST request object.
+
+**Description:**
+Handles the summary status of post summary content via the REST API.
+
+_It performs the following tasks:_
+
+-   Verifies the nonce for security.
+-   Validates the post_id parameter.
+-   Update the post summary status depend on what it receive in `$summaryStatus` parameter.
 
 #### `getFullPostContent(int $postId)`
 
