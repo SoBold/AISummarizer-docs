@@ -1,0 +1,51 @@
+# Locale-Based Spelling Functions
+
+This PHP script provides two functions that return the correct spelling of the words "summarizer" and "summarize" based on the current locale of the WordPress site. It distinguishes between American English and other English variants, such as British English.
+
+## Functions
+
+### `getSummarizerSpelling()`
+
+**Description**:
+Returns the correct spelling of the word "summarizer" based on the current locale.
+
+**Return Values**:
+
+-   **`string`**:
+    -   Returns **`'Summarizer'`** for US English locales (e.g., `en_US`).
+    -   Returns **`'Summariser'`** for all other locales (e.g., UK English, Australian English).
+
+**Usage**:
+
+```php
+$summarizer_spelling = getSummarizerSpelling();
+echo $summarizer_spelling; // Outputs 'Summarizer' or 'Summariser' based on locale
+```
+
+### `getSummarizeSpelling()`
+
+**Description**:
+Returns the correct spelling of the word "summarize" based on the current locale.
+
+**Return Values**:
+
+-   **`string`**:
+    -   Returns **`'Summarize'`** for US English locales (e.g., `en_US`).
+    -   Returns **`'Summarise'`** for all other locales (e.g., UK English, Australian English).
+
+**Usage**:
+
+```php
+$summarize_spelling = getSummarizeSpelling();
+echo $summarize_spelling; // Outputs 'Summarize' or 'Summarise' based on locale
+```
+
+## How It Works
+
+-   **Locale Detection**: Each function uses the get_locale() function provided by WordPress to determine the current site's locale. The locale is typically in the format of a language code followed by an optional country code (e.g., en_US, en_GB, en_AU).
+
+-   **Conditional Logic**:
+    The functions check if the locale starts with en_US. If it does, the functions return the US English spelling of the word.
+    If the locale is anything other than US English, the functions return the British English spelling.
+
+-   **Integration**: These functions can be used throughout plugin to ensure that the correct spelling is displayed based on the user's locale settings.
