@@ -1,13 +1,17 @@
-# Locale-Based Spelling Functions
+# Class SpellingHelper
 
-This PHP script provides two functions that return the correct spelling of the words "summarizer" and "summarize" based on the current locale of the WordPress site. It distinguishes between American English and other English variants, such as British English.
+This PHP script provides a class-based implementation for determining the correct spelling of "summarizer" and "summarize" based on the current locale of the WordPress site. It uses the `get_locale()` function and checks for US English or other English variants.
 
-## Functions
+## Class: `AISummarizer_SpellingHelper`
 
-### `getSummarizerSpelling()`
+The class `AISummarizer_SpellingHelper` contains two static methods to handle locale-based spelling variations. These methods ensure that the appropriate spelling is used based on the site's locale settings.
+
+## Methods
+
+### `AISummarizer_getSummarizerSpelling()`
 
 **Description**:
-Returns the correct spelling of the word "summarizer" based on the current locale.
+Determines the correct spelling of the word "summarizer" based on the current locale
 
 **Return Values**:
 
@@ -18,11 +22,14 @@ Returns the correct spelling of the word "summarizer" based on the current local
 **Usage**:
 
 ```php
-$summarizer_spelling = getSummarizerSpelling();
+use AISummarizer\GlobalFunction\AISummarizer_SpellingHelper;
+
+$summarizer_spelling = AISummarizer_SpellingHelper::AISummarizer_getSummarizerSpelling();
 echo $summarizer_spelling; // Outputs 'Summarizer' or 'Summariser' based on locale
+
 ```
 
-### `getSummarizeSpelling()`
+### `AISummarizer_getSummarizeSpelling()`
 
 **Description**:
 Returns the correct spelling of the word "summarize" based on the current locale.
@@ -36,16 +43,22 @@ Returns the correct spelling of the word "summarize" based on the current locale
 **Usage**:
 
 ```php
-$summarize_spelling = getSummarizeSpelling();
+use AISummarizer\GlobalFunction\AISummarizer_SpellingHelper;
+
+$summarize_spelling = AISummarizer_SpellingHelper::AISummarizer_getSummarizeSpelling();
 echo $summarize_spelling; // Outputs 'Summarize' or 'Summarise' based on locale
+
 ```
 
 ## How It Works
 
--   **Locale Detection**: Each function uses the get_locale() function provided by WordPress to determine the current site's locale. The locale is typically in the format of a language code followed by an optional country code (e.g., en_US, en_GB, en_AU).
+-   **Namespace**:
+    The class is part of the `AISummarizer\GlobalFunction` namespace, ensuring compatibility and avoiding conflicts in the global scope.
+
+-   **Locale Detection**:
+    Each function uses the `get_locale()` function provided by WordPress to determine the current site's locale. The locale is typically in the format of a language code followed by an optional country code (e.g., en_US, en_GB, en_AU).
 
 -   **Conditional Logic**:
-    The functions check if the locale starts with en_US. If it does, the functions return the US English spelling of the word.
-    If the locale is anything other than US English, the functions return the British English spelling.
+    Each method checks if the locale starts with en_US. If true, the US English spelling is returned. For all other locales, the British English spelling is used.
 
--   **Integration**: These functions can be used throughout plugin to ensure that the correct spelling is displayed based on the user's locale settings.
+-   **Integration**: These methods are designed to be used throughout your plugin, ensuring consistent locale-based spelling for user-facing text.
