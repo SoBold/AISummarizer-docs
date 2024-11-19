@@ -22,12 +22,24 @@ use WP_Error;
 **Description:**
 This class provides all the required admin functionalities for managing the plugin's settings and configurations. It hooks into various WordPress admin actions like admin_menu, admin_init, and manages settings for AWS configurations, post types, and widgets.
 
+### Properties
+
+#### `$summarizer_spelling`
+
+-   **Description:** Holds the variable for spelling for _summarizer_
+-   **Type:** object|null
+
+#### `$summarize_spelling`
+
+-   **Description:** Holds the variable for spelling for _summarize_
+-   **Type:** object|null
+
 ### Methods
 
-#### **1. init()**
+#### **1. AISummarizer_admin_init()**
 
 ```php
-public static function init()
+public static function AISummarizer_admin_init()
 ```
 
 **Returns:** `void`
@@ -37,6 +49,16 @@ public static function init()
 **Description:**
 Initializes the admin settings by hooking into WordPress actions. This method sets up the admin menu, registers settings, saves settings, and adds the meta box for summarization.
 
+**Spelling Initialization:**
+Initializes the locale-based spelling of `summarizer` and `summarize` by calling the methods from the `AISummarizer_SpellingHelper` class.
+
+```php
+self::$summarizer_spelling = \AISummarizer\GlobalFunction\AISummarizer_SpellingHelper::AISummarizer_getSummarizerSpelling();
+self::$summarize_spelling = \AISummarizer\GlobalFunction\AISummarizer_SpellingHelper::AISummarizer_getSummarizeSpelling();
+```
+
+This ensures that the correct locale-based spelling is available for use in the admin panel.
+
 _WordPress Hooks_
 
 -   **`admin_menu`**: Adds the admin menu pages.
@@ -44,10 +66,10 @@ _WordPress Hooks_
 -   **`add_meta_boxes`**: Adds a meta box for post summarization.
 -   **`admin_notices`**: Displays any admin notices (e.g., errors, confirmations).
 
-#### **2. addAdminMenu()**
+#### **2. AISummarizer_addAdminMenu()**
 
 ```php
-public static function addAdminMenu()
+public static function AISummarizer_addAdminMenu()
 ```
 
 **Returns:** `void`
@@ -67,10 +89,10 @@ _These pages allow users to configure settings for:_
     -   **`Post Types `**: Manage the post types for summarization.
     -   **`Widget`**: Configure the widget options.
 
-#### **3. masterRender($component)**
+#### **3. AISummarizer_masterRender($component)**
 
 ```php
-public static function masterRender($component)
+public static function AISummarizer_masterRender($component)
 ```
 
 **Returns:** `void`
@@ -85,10 +107,10 @@ Includes and renders PHP component files. It takes a $component argument which i
 _Usage:_
 Used for rendering different setting forms across the plugin's settings pages.
 
-#### **4. registerSettings()**
+#### **4. AISummarizer_registerSettings()**
 
 ```php
-public static function registerSettings()
+public static function AISummarizer_registerSettings()
 ```
 
 **Returns:** `void`
@@ -104,28 +126,28 @@ _Settings Registered:_
 -   Bedrock Model ID and AI Summarizer Model Type.
 -   Configuration fields for summarization.
 
-#### **5. addModelTypeSettingsFields()**
+#### **5. AISummarizer_addModelTypeSettingsFields()**
 
 ```php
-private static function addModelTypeSettingsFields()
+private static function AISummarizer_addModelTypeSettingsFields()
 ```
 
 **Description:**
 Adds specific settings fields for managing model configurations, including AWS keys, model type, and region. These fields are added to the main plugin settings page.
 
-#### **6. addPostTypesSettingsFields()**
+#### **6. AISummarizer_addPostTypesSettingsFields()**
 
 ```php
-private static function addPostTypesSettingsFields()
+private static function AISummarizer_addPostTypesSettingsFields()
 ```
 
 **Description:**
 Adds fields for configuring which post types will be summarized by the AI Summarizer. Post types are selected and managed through this section.
 
-#### **7. addWidgetSettingsFields()**
+#### **7. AISummarizer_addWidgetSettingsFields()**
 
 ```php
-private static function addWidgetSettingsFields()
+private static function AISummarizer_addWidgetSettingsFields()
 ```
 
 **Description:**
@@ -137,10 +159,10 @@ _This includes:_
 -   Widget text fields.
 -   Widget position and visibility settings.
 
-#### **8. renderSettingsPage()**
+#### **8. AISummarizer_renderSettingsPage()**
 
 ```php
-public static function renderSettingsPage()
+public static function AISummarizer_renderSettingsPage()
 ```
 
 **Description:**
@@ -151,28 +173,28 @@ _Form Actions:_
 -   Submits the form to `admin-post.php`.
 -   Includes nonce field for security.
 
-#### **9. renderPostTypesPage()**
+#### **9. AISummarizer_renderPostTypesPage()**
 
 ```php
-public static function renderPostTypesPage()
+public static function AISummarizer_renderPostTypesPage()
 ```
 
 **Description:**
 Renders the page for configuring post types that will be summarized by the plugin.
 
-#### **10. renderWidgetSettingsPage()**
+#### **10. AISummarizer_renderWidgetSettingsPage()**
 
 ```php
-public static function renderWidgetSettingsPage()
+public static function AISummarizer_renderWidgetSettingsPage()
 ```
 
 **Description:**
 Renders the widget settings page where users can configure the front-end display of the AI Summarizer widget.
 
-#### **11. addSummarizerMetaBox($post_type)**
+#### **11. AISummarizer_addSummarizerMetaBox($post_type)**
 
 ```php
-public static function addSummarizerMetaBox($post_type)
+public static function AISummarizer_addSummarizerMetaBox($post_type)
 ```
 
 **Returns:** `void`
@@ -186,10 +208,10 @@ _Meta Box Added For:_
 
 -   Post types that support text or have ACF fields or any kind of text content.
 
-#### **12. saveSettings()**
+#### **12. AISummarizer_saveSettings()**
 
 ```php
-public static function saveSettings()
+public static function AISummarizer_saveSettings()
 ```
 
 **Returns:** `void`
@@ -203,19 +225,19 @@ _Operations:_
 -   Model testing with the provided AWS credentials.
 -   Redirects to the settings page after saving.
 
-#### **13. displayAdminNotice()**
+#### **13. AISummarizer_displayAdminNotice()**
 
 ```php
-public static function displayAdminNotice()
+public static function AISummarizer_displayAdminNotice()
 ```
 
 **Description:**
 Displays an admin notice when there is an error or message that needs to be shown to the user. The message is stored in a transient and displayed on the next page load.
 
-#### **14. encrypt($data)**
+#### **14. AISummarizer_encrypt($data)**
 
 ```php
-private static function encrypt(string $data): string
+private static function AISummarizer_encrypt(string $data): string
 ```
 
 **Returns:** `string` (Encrypted base64 string)
@@ -230,10 +252,10 @@ Encrypts the given data using AES-256-CBC encryption and returns the encrypted s
 -   _Usage:_
     Encrypts sensitive data like AWS credentials before storing it in the database.
 
-#### **15. decrypt($encryptedData)**
+#### **15. AISummarizer_decrypt($encryptedData)**
 
 ```php
-public static function decrypt(string $encryptedData): string
+public static function AISummarizer_decrypt(string $encryptedData): string
 ```
 
 **Returns:** `string` (Decrypted original string)
@@ -245,10 +267,10 @@ public static function decrypt(string $encryptedData): string
 **Description:**
 Decrypts the base64-encoded encrypted data using AES-256-CBC. This is used to retrieve sensitive data from the database.
 
-#### **16. canPostTypeBeSummarized($post_type)**
+#### **16. AISummarizer_canPostTypeBeSummarized($post_type)**
 
 ```php
-public static function canPostTypeBeSummarized($post_type)
+public static function AISummarizer_canPostTypeBeSummarized($post_type)
 ```
 
 **Returns:** `bool` (True if post type can be summarized, false otherwise)
@@ -260,10 +282,10 @@ public static function canPostTypeBeSummarized($post_type)
 **Description:**
 Determines if a given post type can be summarized based on whether it supports the editor or ACF fields like text contents.
 
-#### **17. hasAcfTextContent($acf_fields)**
+#### **17. AISummarizer_hasAcfTextContent($acf_fields)**
 
 ```php
-public static function hasAcfTextContent($acf_fields)
+public static function AISummarizer_hasAcfTextContent($acf_fields)
 ```
 
 **Description:**
