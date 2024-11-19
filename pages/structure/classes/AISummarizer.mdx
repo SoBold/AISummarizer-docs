@@ -36,10 +36,10 @@ The `AISummarizer` class manages the integration of AI models for summarizing po
 
 ### Methods
 
-#### `init()`
+#### `AISummarizer_init()`
 
 ```php
-public static function init(): void
+public static function AISummarizer_init(): void
 ```
 
 **Returns:** `void`
@@ -54,10 +54,10 @@ Initializes the plugin by setting up actions and filters necessary for its funct
 -   Registering REST API routes.
 -   Initializing admin settings and the selected AI model.
 
-#### `initializeModel()`
+#### `AISummarizer_initializeModel()`
 
 ```php
-private static function initializeModel(): void
+private static function AISummarizer_initializeModel(): void
 ```
 
 **Returns:** `void`
@@ -72,10 +72,10 @@ Initializes the AI model based on the plugin settings. It retrieves the AWS acce
         returns early if any are missing
     </Callout>
 
-#### `enqueueAssets()`
+#### `AISummarizer_enqueueAssets()`
 
 ```php
-public static function enqueueAssets(): void
+public static function AISummarizer_enqueueAssets(): void
 ```
 
 **Returns:** `void`
@@ -91,10 +91,10 @@ _It includes:_
 -   Localizes script data to pass REST API URLs and a nonce for security.
 -   A stylesheet (`ai-summarizer.css`) for plugin styling.
 
-#### `registerRestRoutes()`
+#### `AISummarizer_registerRestRoutes()`
 
 ```php
-public static function registerRestRoutes(): void
+public static function AISummarizer_registerRestRoutes(): void
 ```
 
 **Returns:** `void`
@@ -107,13 +107,13 @@ Registers REST API routes for the summarization functionalities.
 _It includes:_
 
 -   A **POST** route (/summarize) for creating a summary of a post (user permission required).
--   A **GET** route (/getSummary) for fetching the existing summary of a post (public access).
+-   A **GET** route (/getSummary) for fetching the existing summary of a post (public access via form submission only).
 -   A **POST** route (/delete) for delete/clear summary of a post (user permission required).
 
-#### `getMissingModelFields()`
+#### `AISummarizer_getMissingModelFields()`
 
 ```php
-private static function getMissingModelFields(): array
+private static function AISummarizer_getMissingModelFields(): array
 ```
 
 **Returns:** `array`
@@ -123,10 +123,10 @@ private static function getMissingModelFields(): array
 **Description:**
 Helper function that checks for missing model credentials (AWS access key, secret key, region, model ID) and returns an array of corresponding messages for any missing fields.
 
-#### `handleSummarization(WP_REST_Request $request)`
+#### `AISummarizer_handleSummarization(WP_REST_Request $request)`
 
 ```php
-public static function handleSummarization(WP_REST_Request $request)
+public static function AISummarizer_handleSummarization(WP_REST_Request $request)
 ```
 
 **Returns:** `WP_REST_Response` with the summary or a `WP_Error` in case of failures.
@@ -143,10 +143,10 @@ _It performs the following tasks:_
 -   Retrieves the post and checks for missing model credentials.
 -   Summarizes the post content using the initialized AI model and updates the post meta with the summary.
 
-#### `handleGetSummarization(WP_REST_Request $request)`
+#### `AISummarizer_handleGetSummarization(WP_REST_Request $request)`
 
 ```php
-public static function handleGetSummarization(WP_REST_Request $request)
+public static function AISummarizer_handleGetSummarization(WP_REST_Request $request)
 ```
 
 **Returns:** `WP_Error|WP_REST_Response` The REST response or error object.
@@ -162,10 +162,10 @@ _It performs the following tasks:_
 -   Validates the post_id parameter.
 -   Checks if the summary exists in post meta and returns it or a WP_Error if not found.
 
-#### `handleDeleteSummarization(WP_REST_Request $request)`
+#### `AISummarizer_handleDeleteSummarization(WP_REST_Request $request)`
 
 ```php
-public static function handleDeleteSummarization(WP_REST_Request $request)
+public static function AISummarizer_handleDeleteSummarization(WP_REST_Request $request)
 ```
 
 **Returns:** `WP_REST_Response` with the summary or a `WP_Error` in case of failures.
@@ -181,10 +181,10 @@ _It performs the following tasks:_
 -   Validates the post_id parameter.
 -   Delete the post summary from database.
 
-#### `getFullPostContent(int $postId)`
+#### `AISummarizer_getFullPostContent(int $postId)`
 
 ```php
-private static function getFullPostContent($postId)
+private static function AISummarizer_getFullPostContent($postId)
 ```
 
 **Returns:** `string` (Post content)
@@ -204,10 +204,10 @@ _including:_
 -   WPBakery shortcode content.
 -   Other meta fields.
 
-#### `extractContentFromBlocks(array $blocks)`
+#### `AISummarizer_extractContentFromBlocks(array $blocks)`
 
 ```php
-private static function extractContentFromBlocks($blocks)
+private static function AISummarizer_extractContentFromBlocks($blocks)
 ```
 
 **Returns:** `string` (Post content)
@@ -219,10 +219,10 @@ private static function extractContentFromBlocks($blocks)
 **Description:**
 Extracts content from Gutenberg blocks recursively. It constructs a string of inner HTML from the provided blocks and their inner blocks
 
-#### `extractWpBakeryContent(array $content)`
+#### `AISummarizer_extractWpBakeryContent(array $content)`
 
 ```php
-private static function extractWpBakeryContent($content)
+private static function AISummarizer_extractWpBakeryContent($content)
 ```
 
 **Returns:** `string` (Post content)
@@ -234,10 +234,10 @@ private static function extractWpBakeryContent($content)
 **Description:**
 Processes WPBakery shortcodes to extract their inner content, returning the processed content as a string.
 
-#### `getAcfData(int $postId)`
+#### `AISummarizer_getAcfData(int $postId)`
 
 ```php
-public static function getAcfData(int $postId)
+public static function AISummarizer_getAcfData(int $postId)
 ```
 
 **Returns:** `array|false` (An associative array containing ACF field data, or false if no fields are found.)
@@ -249,10 +249,10 @@ public static function getAcfData(int $postId)
 **Description:**
 Retrieves ACF field data for a given post ID. It returns an associative array of ACF fields or false if no fields are found.
 
-#### `getAcfFieldData(int $postId)`
+#### `AISummarizer_getAcfFieldData(int $postId)`
 
 ```php
-public static function getAcfFieldData($fieldValue)
+public static function AISummarizer_getAcfFieldData($fieldValue)
 ```
 
 **Returns:** `mixed` (The processed field value.)
@@ -264,10 +264,10 @@ public static function getAcfFieldData($fieldValue)
 **Description:**
 Processes ACF field data, handling nested arrays or objects recursively, and returns the processed field value.
 
-#### `renderWidgetBox()`
+#### `AISummarizer_renderWidgetBox()`
 
 ```php
-public static function renderWidgetBox(): void
+public static function AISummarizer_renderWidgetBox(): void
 ```
 
 **Returns:** `void`
@@ -283,10 +283,10 @@ _The rendering is conditional based on:_
 -   The widget visibility option being enabled.
 -   The post type matching the specified post types.
 
-#### `pluginActivation()`
+#### `AISummarizer_pluginActivation()`
 
 ```php
-public static function pluginActivation(): void
+public static function AISummarizer_pluginActivation(): void
 ```
 
 **Returns:** `void`
@@ -296,10 +296,10 @@ public static function pluginActivation(): void
 **Description:**
 Performs activation tasks for the plugin, such as generating and storing a secure encryption key if it does not already exist.
 
-#### `pluginDeactivation()`
+#### `AISummarizer_pluginDeactivation()`
 
 ```php
-public static function pluginDeactivation(): void
+public static function AISummarizer_pluginDeactivation(): void
 ```
 
 **Returns:** `void`
