@@ -4,5 +4,6 @@
     "textToVoice": "Text To Voice",
     "tokenBasedSummarization": "Token Based Summarization",
     "frontendWidgetCustomization": "Frontend Widget Customization",
-    "scheduled-auto-summarization": "Scheduled Auto Summarization"
+    "scheduled-auto-summarization": "Scheduled Auto Summarization",
+    "plugin-api-extension": "Plugin API Extension"
 }
