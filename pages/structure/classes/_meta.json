@@ -2,6 +2,6 @@
     "models": "Models",
     "interfaces": "Interfaces",
     "factories": "Factories",
-    "AISummarizer": "AI Summarizer",
-    "AISummarizerAdmin": "AI Summarizer Admin"
+    "AI-summarizer": "AI Summarizer",
+    "AI-summarizer-admin": "AI Summarizer Admin"
 }

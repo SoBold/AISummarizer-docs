@@ -1,6 +1,6 @@
 {
     "development": "Development",
     "testing": "Testing",
-    "sourceControl": "Source Control",
+    "source-control": "Source Control",
     "deployment": "Deployment"
 }

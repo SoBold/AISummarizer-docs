@@ -1,9 +1,9 @@
 {
-    "addMultipleModels": "Add Multiple Models",
-    "multiplePostTypes": "Multiple Post Types",
-    "textToVoice": "Text To Voice",
-    "tokenBasedSummarization": "Token Based Summarization",
-    "frontendWidgetCustomization": "Frontend Widget Customization",
+    "add-multiple-models": "Add Multiple Models",
+    "multiple-post-types": "Multiple Post Types",
+    "tex-to-voice": "Text To Voice",
+    "token-based-summarization": "Token Based Summarization",
+    "frontend-widget-customization": "Frontend Widget Customization",
     "scheduled-auto-summarization": "Scheduled Auto Summarization",
     "plugin-api-extension": "Plugin API Extension"
 }

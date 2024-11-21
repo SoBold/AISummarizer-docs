@@ -1,6 +1,6 @@
 {
     "root": "Root",
-    "pluginFile": "Plugin File",
-    "globalFunctions": "Global Functions",
+    "plugin-file": "Plugin File",
+    "global-functions": "Global Functions",
     "classes": "Classes"
 }
