@@ -5,5 +5,6 @@
     "token-based-summarization": "Token Based Summarization",
     "frontend-widget-customization": "Frontend Widget Customization",
     "scheduled-auto-summarization": "Scheduled Auto Summarization",
-    "plugin-api-extension": "Plugin API Extension"
+    "plugin-api-extension": "Plugin API Extension",
+    "ai-content-augmentation": "AI Content Augmentation"
 }
