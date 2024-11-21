@@ -1,3 +1,5 @@
+import { FileTree } from 'nextra/components';
+
 # Folder Structure
 
 ```bash
@@ -32,3 +34,45 @@
         ├── widget-text.php
         └── widget-visibility.php
 ```
+
+<FileTree>
+    <FileTree.File name="ai-summarizer.php" />
+    <FileTree.File name="composer.json" />
+    <FileTree.Folder name="includes" defaultOpen>
+        <FileTree.File name="AISummarizer.php" />
+        <FileTree.File name="AISummarizerAdmin.php" />
+        <FileTree.Folder name="Factories">
+            <FileTree.File name="ModelFactory.php" />
+        </FileTree.Folder>
+        <FileTree.File name="GlobalFunctions.php" />
+        <FileTree.Folder name="Interfaces">
+            <FileTree.File name="AiModelInterface.php" />
+        </FileTree.Folder>
+        <FileTree.Folder name="Models">
+            <FileTree.File name="BedrockModel.php" />
+        </FileTree.Folder>
+        <FileTree.Folder name="assets">
+            <FileTree.File name="ai-summarizer.css" />
+            <FileTree.File name="ai-summarizer.js" />
+            <FileTree.File name="widget.php" />
+        </FileTree.Folder>
+        <FileTree.Folder name="components">
+            <FileTree.File name="aiSummarizer-configuration.php" />
+            <FileTree.File name="aws-access-key.php" />
+            <FileTree.File name="aws-model-ids.php" />
+            <FileTree.File name="aws-regions.php" />
+            <FileTree.File name="aws-secret-key.php" />
+            <FileTree.File name="display-summary-speed.php" />
+            <FileTree.File name="model-types.php" />
+            <FileTree.File name="post-types.php" />
+            <FileTree.File name="summarizer-meta-box.php" />
+            <FileTree.File name="summary-length.php" />
+            <FileTree.File name="widget-colour.php" />
+            <FileTree.File name="widget-position.php" />
+            <FileTree.File name="widget-text-two.php" />
+            <FileTree.File name="widget-text.php" />
+            <FileTree.File name="widget-visibility.php" />
+        </FileTree.Folder>
+    </FileTree.Folder>
+    <FileTree.File name="readme.md" />
+</FileTree>
