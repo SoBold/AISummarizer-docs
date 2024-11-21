@@ -3,5 +3,6 @@
     "multiplePostTypes": "Multiple Post Types",
     "textToVoice": "Text To Voice",
     "tokenBasedSummarization": "Token Based Summarization",
-    "frontendWidgetCustomization": "Frontend Widget Customization"
+    "frontendWidgetCustomization": "Frontend Widget Customization",
+    "scheduled-auto-summarization": "Scheduled Auto Summarization"
 }
